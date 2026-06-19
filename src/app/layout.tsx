@@ -5,6 +5,7 @@ import "./globals.css";
 import { ensureBackendAvailable } from "@/shared/system/health";
 import { BackendOffline } from "@/components/BackendOffline";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeSelector } from "../components/ThemeSelecctor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,11 +30,12 @@ export default async function RootLayout({
   const online = await ensureBackendAvailable();
 
   return (
-    <html lang="es-ES" suppressHydrationWarning>
+    <html lang="es-ES" data-theme="cupcake" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Toaster position="bottom-right" richColors />
+        <ThemeSelector />
         {online ? children : <BackendOffline />}
       </body>
     </html>

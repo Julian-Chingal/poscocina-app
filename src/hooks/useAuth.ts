@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { authService } from '@/features/auth';
+import { me } from '@/features/auth';
 import { userType } from '@/shared/types';
 
 export function useAuth() {
@@ -7,8 +7,8 @@ export function useAuth() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        authService.me()
-        .then((res) => setUser(res.data))
+        me()
+        .then((res) => setUser(res?.data))
         .catch(() => setUser(null))
         .finally(() => setLoading(false))
     })

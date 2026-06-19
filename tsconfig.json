@@ -22,7 +22,9 @@
       "@/*": ["./*"],
       "@/shared/*": ["./src/shared/*"],
       "@/components/*": ["./src/components/*"],
-      "@/features/*": ["./src/features/*"]
+      "@/features/*": ["./src/features/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/config/*": ["./src/config/*"]
     }
   },
   "include": [
