@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { ensureBackendAvailable } from "@/shared/system/health";
 import { BackendOffline } from "@/components/BackendOffline";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,18 +29,12 @@ export default async function RootLayout({
   const online = await ensureBackendAvailable();
 
   return (
-    <html
-      lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="h-full bg-zinc-50 text-zinc-900 flex flex-col">
-        {online ? (
-          <div className="flex-1 flex flex-col h-full overflow-hidden">
-            {children}
-          </div>
-        ) : (
-          <BackendOffline />
-        )}
+    <html lang="es-ES" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Toaster position="bottom-right" richColors />
+        {online ? children : <BackendOffline />}
       </body>
     </html>
   );
