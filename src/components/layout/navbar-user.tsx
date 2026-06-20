@@ -17,23 +17,29 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { ThemeSelector } from "../ThemeSelecctor";
+import { useAuth } from "@/src/hooks";
+import { NavbarUserSkeleton } from "./navbar-user-skeleton";
 
 export function NavbarUser() {
-  const user = {
-    name: "Administrador",
-    email: "admin@empresa.com",
-    role: "Administrador",
-    avatar: "",
-  };
+  const { user, isAuthenticated, loading } = useAuth();
+
+  if (loading) {
+    return <NavbarUserSkeleton />;
+  }
+
+  if (!isAuthenticated || !user) {
+    return null;
+  }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-auto gap-3 rounded-xl px-2 py-2">
           <Avatar className="h-9 w-9">
-            <AvatarImage src={user.avatar} />
-
-            <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+            {/* <AvatarImage src={user.avatar} alt={user.name} /> */}
+            <AvatarFallback>
+              {user.name?.charAt(0).toUpperCase() || "U"}
+            </AvatarFallback>
           </Avatar>
 
           <div className="hidden text-left md:block">

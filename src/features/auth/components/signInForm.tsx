@@ -31,6 +31,8 @@ export function SignInForm() {
     const res = await login({ email, password });
 
     if (res?.status === 200) {
+      const { useAuthStore } = await import("../auth.store");
+      useAuthStore.getState().setUser(res.data?.data?.user || null);
       router.push("/dashboard");
     }
 

@@ -1,6 +1,6 @@
 import { toast } from 'sonner'
 import { api } from '@/shared/api'
-import { LoginPayload } from './auth.type'
+import { LoginPayload } from './auth.types'
 import { showApiError } from './auth.utils'
 
 export async function login(payload: LoginPayload) {

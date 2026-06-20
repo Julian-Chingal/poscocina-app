@@ -1,41 +1,20 @@
-import { useEffect, useReducer } from 'react';
-import { me } from '@/features/auth';
-import { userType } from '@/shared/types';
+import { useSyncExternalStore } from 'react';
+import { useAuthStore } from '@/features/auth/auth.store';
 
-interface AuthState {
-  user: userType | null;
-  loading: boolean;
-}
-
-type AuthAction =
-  | { type: 'FETCH_SUCCESS'; payload: userType | null }
-  | { type: 'FETCH_ERROR' };
-
-function authReducer(state: AuthState, action: AuthAction): AuthState {
-  switch (action.type) {
-    case 'FETCH_SUCCESS':
-      return { user: action.payload, loading: false };
-    case 'FETCH_ERROR':
-      return { user: null, loading: false };
-    default:
-      return state;
-  }
-}
+const emptySubscribe = () => () => {};
 
 export function useAuth() {
-  const [state, dispatch] = useReducer(authReducer, {
-    user: null,
-    loading: true,
-  });
+  const user = useAuthStore((state) => state.user);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const isHydrated = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
-  useEffect(() => {
-    me()
-      .then((res) => {
-        dispatch({ type: 'FETCH_SUCCESS', payload: res?.data });
-      })
-      .catch(() => {
-        dispatch({ type: 'FETCH_ERROR' });
-      });
-  }, []); 
-  return { user: state.user, loading: state.loading };
+  return { 
+    user: isHydrated ? user : null, 
+    isAuthenticated: isHydrated ? isAuthenticated : false,
+    loading: !isHydrated 
+  };
 }
