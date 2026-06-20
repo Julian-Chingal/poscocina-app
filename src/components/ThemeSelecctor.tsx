@@ -8,11 +8,32 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import { useTheme } from "@/hooks/useTheme";
 import { ThemeLabels } from "@/config/themeConfig";
 
-export function ThemeSelector() {
+interface ThemeSelectorProps {
+  embedded?: boolean;
+}
+
+export function ThemeSelector({ embedded = false }: ThemeSelectorProps) {
   const { theme, setTheme, themes } = useTheme();
+
+  if (embedded) {
+    return (
+      <>
+        {themes.map((t) => (
+          <DropdownMenuItem
+            key={t}
+            onClick={() => setTheme(t)}
+            className={t === theme ? "font-semibold" : ""}
+          >
+            {ThemeLabels[t]}
+          </DropdownMenuItem>
+        ))}
+      </>
+    );
+  }
 
   return (
     <div className="fixed top-4 right-4 z-50">
