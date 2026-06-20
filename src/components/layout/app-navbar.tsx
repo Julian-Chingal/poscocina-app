@@ -5,7 +5,7 @@ import { NavbarSearch } from "./navbar-search";
 
 export function AppNavbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-secondary bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-6">
         <Logo />
 
