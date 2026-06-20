@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { login } from "../auth.service";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function SignInForm() {
   const [email, setEmail] = useState("");
@@ -48,7 +49,7 @@ export function SignInForm() {
           <form onSubmit={handleSubmit} className="p-6 md:p-8">
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center">
-                <Avatar className="w-24 h-24">
+                <Avatar className="h-24 w-24">
                   <AvatarImage src="favicon.ico" alt="@poscocina" />
                   <AvatarFallback>POS</AvatarFallback>
                 </Avatar>
@@ -61,24 +62,28 @@ export function SignInForm() {
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
+                  id="email"
+                  type="email"
                   placeholder="Usuario"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </Field>
 
               <Field>
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a
-                    href="#"
+                  <Link
+                    href="/forgot-password"
                     className="ml-auto text-sm underline-offset-2 hover:underline"
                   >
                     Forgot your password?
-                  </a>
+                  </Link>
                 </div>
 
                 <Input
+                  id="password"
                   type="password"
                   placeholder="Contraseña"
                   value={password}
@@ -107,8 +112,21 @@ export function SignInForm() {
         </CardContent>
       </Card>
       <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+        By clicking continue, you agree to our{" "}
+        <Link
+          href="/terms"
+          className="underline underline-offset-4 hover:text-primary"
+        >
+          Terms of Service
+        </Link>{" "}
+        and{" "}
+        <Link
+          href="/privacy"
+          className="underline underline-offset-4 hover:text-primary"
+        >
+          Privacy Policy
+        </Link>
+        .
       </FieldDescription>
     </div>
   );
