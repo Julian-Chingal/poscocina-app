@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeSelector } from "../ThemeSelecctor";
 import { useAuth } from "@/src/hooks";
 import { NavbarUserSkeleton } from "./navbar-user-skeleton";
+import { logout } from "@/src/features/auth";
 
 export function NavbarUser() {
   const { user, isAuthenticated, loading } = useAuth();
@@ -30,6 +31,13 @@ export function NavbarUser() {
   if (!isAuthenticated || !user) {
     return null;
   }
+
+  const handleLogout = async () => {
+    await logout();
+    const { useAuthStore } = await import("@/features/auth/auth.store");
+    useAuthStore.getState().logoutState();
+    window.location.href = "/login";
+  };
 
   return (
     <DropdownMenu>
@@ -92,7 +100,10 @@ export function NavbarUser() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem className="text-destructive focus:text-destructive">
+        <DropdownMenuItem
+          className="text-destructive focus:text-destructive"
+          onClick={handleLogout}
+        >
           <LogOut className="mr-2 h-4 w-4" />
           Cerrar sesión
         </DropdownMenuItem>
