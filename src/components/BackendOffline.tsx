@@ -1,56 +1,73 @@
 "use client";
 
-import { CookingPot } from "lucide-react";
+import { CookingPot, Mail, RefreshCcw } from "lucide-react";
+import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 
 export function BackendOffline() {
   return (
-    <main className="grid min-h-full place-items-center bg-zinc-900 px-6 py-24 sm:py-32 lg:px-8">
-      <div className="text-center">
-        {/* Icono de cocina / olla */}
-        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-amber-500/10 ring-1 ring-amber-500/20">
-          <CookingPot className="text-amber-400 h-12 w-12" />
-        </div>
+    <main className="flex min-h-svh flex-col items-center justify-center bg-background p-4 md:p-10">
+      <Card className="w-full max-w-lg border-none bg-transparent shadow-none md:border-solid md:bg-card md:shadow-sm">
+        <CardHeader className="items-center justify-center pb-6 text-center">
+          <CookingPot className="mx-auto mb-2 h-16 w-16 text-primary " />
+          <h1>Servicio no disponible</h1>
+          <CardTitle className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+            La cocina está cerrada
+          </CardTitle>
+        </CardHeader>
 
-        <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-amber-400">
-          Servicio no disponible
-        </p>
+        <CardContent className="space-y-8 text-center">
+          <CardDescription className="mx-auto max-w-md text-base">
+            No pudimos conectar con el servidor de{" "}
+            <span className="font-semibold text-foreground">PosCocina</span>.
+            Puede que estemos realizando mantenimiento o haya un problema de
+            conexión.
+          </CardDescription>
 
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          La cocina está cerrada
-        </h1>
-
-        <p className="mt-6 text-lg text-zinc-400 max-w-md mx-auto">
-          No pudimos conectar con el servidor de{" "}
-          <span className="font-semibold text-amber-400">PosCocina</span>. Puede
-          que estemos realizando mantenimiento o haya un problema de conexión.
-        </p>
-
-        {/* Estado visual tipo "ticket" */}
-        <div className="mt-8 mx-auto max-w-xs rounded-lg border border-zinc-700 bg-zinc-800/60 p-4 text-left">
-          <div className="flex items-center gap-2 text-sm text-zinc-500">
-            <span className="inline-block h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-            Servidor fuera de línea
+          <div className="mx-auto max-w-xs rounded-lg border bg-muted/50 p-4 text-left shadow-sm">
+            <div className="flex items-center gap-3 text-sm font-medium text-foreground">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-destructive" />
+              </span>
+              Servidor fuera de línea
+            </div>
+            <div className="mt-3 border-t pt-2 font-mono text-xs text-muted-foreground">
+              poscocina · sistema pos
+            </div>
           </div>
-          <div className="mt-2 border-t border-zinc-700 pt-2 text-xs text-zinc-500 font-mono">
-            poscocina · sistema pos
-          </div>
-        </div>
+        </CardContent>
 
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
+        <CardFooter className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row sm:gap-4">
+          <Button
             onClick={() => window.location.reload()}
-            className="w-full sm:w-auto rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-semibold text-zinc-900 shadow-sm hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 transition-colors cursor-pointer"
+            className="w-full sm:w-auto"
+            size="lg"
           >
+            <RefreshCcw className="mr-2 h-4 w-4" />
             Reintentar conexión
-          </button>
-          <a
-            href="mailto:soporte@poscocina.com"
-            className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+          </Button>
+
+          <Button
+            asChild
+            variant="ghost"
+            className="w-full text-muted-foreground hover:text-foreground sm:w-auto"
+            size="lg"
           >
-            Contactar soporte <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
-      </div>
+            <a href="mailto:soporte@poscocina.com">
+              <Mail className="mr-2 h-4 w-4" />
+              Contactar soporte
+            </a>
+          </Button>
+        </CardFooter>
+      </Card>
     </main>
   );
 }
