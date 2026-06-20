@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { useTheme } from "@/hooks/useTheme";
-import { ThemeLabels } from "@/config/themeConfig";
+import { ThemeLabels } from "@/shared/config";
 
 interface ThemeSelectorProps {
   embedded?: boolean;

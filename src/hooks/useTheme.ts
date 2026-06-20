@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useSyncExternalStore } from "react";
-import { Theme, THEMES } from "@/config/themeConfig";
+import { Theme, THEMES } from "@/src/shared/config/themeConfig";
 
 const DEFAULT_THEME: Theme = "pastel";
 
