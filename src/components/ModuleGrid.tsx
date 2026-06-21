@@ -19,7 +19,7 @@ export default function ModuleGrid({ modules }: Props) {
       {modules.map((mod) => {
         const Icon = mod.icon;
         return (
-          <div key={mod.id} className="flex flex-col items-center">
+          <div key={mod.id} className="flex flex-col items-center gap-2">
             <Link
               href={mod.href}
               className={`group relative w-full max-w-30 aspect-square rounded-2xl shadow-sm hover:shadow-md active:scale-95 transition flex items-center justify-center ${mod.color}   `}
