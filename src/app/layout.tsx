@@ -6,6 +6,7 @@ import { ensureBackendAvailable } from "@/shared/system/health";
 import { BackendOffline } from "@/components/BackendOffline";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeSelector } from "../components/ThemeSelecctor";
+import { TooltipProvider } from "../components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +37,9 @@ export default async function RootLayout({
       >
         <Toaster position="bottom-right" richColors />
         <ThemeSelector />
-        {online ? children : <BackendOffline />}
+        <TooltipProvider>
+          {online ? children : <BackendOffline />}
+        </TooltipProvider>
       </body>
     </html>
   );

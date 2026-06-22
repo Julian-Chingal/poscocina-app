@@ -33,7 +33,7 @@ export function SignInForm() {
     if (res?.status === 200) {
       const { useAuthStore } = await import("../auth.store");
       useAuthStore.getState().setUser(res.data?.data?.user || null);
-      router.push("/dashboard");
+      router.push("/home");
     }
 
     setLoading(false);

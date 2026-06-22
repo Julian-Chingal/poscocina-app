@@ -6,8 +6,16 @@ interface PageContainerProps {
 
 export function PageContainer({ children }: PageContainerProps) {
   return (
-    <main className="mx-auto w-full max-w-screen-2xl flex-1 px-6 py-6">
-      {children}
-    </main>
+    <div className="relative min-h-screen bg-background">
+      <div
+        className="
+      absolute inset-0 z-0
+      bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.35),transparent_70%)]
+      blur-[80px]
+    "
+      />
+
+      <main className="relative z-10">{children}</main>
+    </div>
   );
 }

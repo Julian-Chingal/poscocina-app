@@ -8,4 +8,4 @@ export const AUTH_ROUTES = [
     '/forgot-password'
 ];
 
-export const DEFAULT_LOGIN_REDIRECT = '/dashboard';
+export const DEFAULT_LOGIN_REDIRECT = '/home';

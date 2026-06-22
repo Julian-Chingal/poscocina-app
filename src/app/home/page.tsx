@@ -6,30 +6,30 @@ export default function HomePage() {
     {
       id: 1,
       name: "Usuarios",
+      tooltip: "Modulo Usuarios",
       icon: User,
       href: "/users",
-      color: "bg-accent",
     },
     {
       id: 2,
       name: "Inventario",
+      tooltip: "Modulo Inventario",
       icon: Box,
       href: "/inventory",
-      color: "bg-info",
     },
     {
       id: 3,
       name: "Reportes",
+      tooltip: "Modulo Reportes",
       icon: ChartBar,
       href: "/reports",
-      color: "bg-secondary",
     },
     {
       id: 4,
       name: "Configuracion",
+      tooltip: "Modulo Configuracion",
       icon: Cog,
       href: "/reports",
-      color: "bg-secondary-foreground",
     },
   ];
 
